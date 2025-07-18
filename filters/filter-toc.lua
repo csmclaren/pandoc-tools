@@ -42,9 +42,9 @@ function Header(elem)
     end
     table.insert(path, item)
   else
-    -- We ignore headers that descend too quickly,
-    -- (i.e. with a level greater than one deeper than the parent),
-    -- otherwise we would need to insert anonymous scaffolding nodes to support them.
+    -- Ignore headers that descend too quickly
+    -- (i.e., by more than one level deeper than the parent);
+    -- otherwise, we would need to insert anonymous scaffolding nodes to support them.
   end
 
   return nil
