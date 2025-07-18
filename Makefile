@@ -11,11 +11,11 @@ css/default.css:
 		https://raw.githubusercontent.com/sindresorhus/github-markdown-css/gh-pages/github-markdown.css
 
 set-permissions:
-	find . -type d -exec chmod 755 {} \;
-	find . -type f -exec chmod 644 {} \;
+	find . -type d -exec chmod 755 {} +
+	find . -type f -exec chmod 644 {} +
 
 set-timestamps:
-	find . -exec touch {} +
+	find . -path './.git' -prune -o -exec touch {} +
 
 clean:
 	rm -fr css/
