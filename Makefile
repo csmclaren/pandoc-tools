@@ -4,10 +4,12 @@ all: clean build
 
 build: css/default.css set-permissions set-timestamps
 
-css/default.css:
-	mkdir -p css && \
+css-dir:
+	mkdir -p css
+
+css/default.css: | css-dir
 	curl \
-		-o css/default.css \
+		-o $@ \
 		https://raw.githubusercontent.com/sindresorhus/github-markdown-css/gh-pages/github-markdown.css
 
 set-permissions:
@@ -18,4 +20,4 @@ set-timestamps:
 	find . -path './.git' -prune -o -exec touch {} +
 
 clean:
-	rm -fr css/
+	rm -fr css
