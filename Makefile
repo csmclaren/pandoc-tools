@@ -20,4 +20,4 @@ set-timestamps:
 	find . -path './.git' -prune -o -exec touch {} +
 
 clean:
-	rm -fr css
+	$(RM) -fr css
