@@ -187,7 +187,6 @@ function Pandoc(doc)
     Cite        = rewrite_inlines_container,
     Emph        = rewrite_inlines_container,
     Header      = rewrite_inlines_container,
-    Link        = rewrite_inlines_container,
     Para        = rewrite_inlines_container,
     Plain       = rewrite_inlines_container,
     Quoted      = rewrite_inlines_container,
@@ -219,6 +218,17 @@ function Pandoc(doc)
         if match then
           el.text = replace_placeholders_in_string(el.text, resolver, pattern, left_delim, right_delim)
         end
+      end
+      return el
+    end,
+
+    Link = function(el)
+      el.content = replace_in_inlines(el.content, resolver, pattern, left_delim, right_delim)
+      if el.target and el.target ~= "" then
+        el.target = replace_placeholders_in_string(el.target, resolver, pattern, left_delim, right_delim)
+      end
+      if el.title and el.title ~= "" then
+        el.title = replace_placeholders_in_string(el.title, resolver, pattern, left_delim, right_delim)
       end
       return el
     end,
